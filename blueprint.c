@@ -6,7 +6,7 @@
 /*   By: lyoung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 10:27:53 by lyoung            #+#    #+#             */
-/*   Updated: 2017/01/30 14:42:54 by lyoung           ###   ########.fr       */
+/*   Updated: 2017/01/30 14:53:33 by lyoung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(int argc, char **argv)
 	 * 			- program then moves onto next map
 	 * 		d. analyze first line (# of lines, "empty" char, "obstacle" char, "full" char)
 	 * 2. Set **matrix
-	 * 		a. creat a 2D matrix (using malloc so you can return a pointer to the matrix), containing values for empty and obstacle chars.
+	 * 		a. create a 2D matrix (using malloc so you can return a pointer to the matrix), containing values for empty and obstacle chars.
 	 * 		b. go through all rows and columns and set up arrays containing positions of obstacles for each of them
 	 * 3. Check every possible square in the matrix
 	 * 		a. starting at top-left corner, see if 1x1 square is feasible

@@ -6,7 +6,7 @@
 /*   By: lyoung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 12:37:26 by lyoung            #+#    #+#             */
-/*   Updated: 2017/01/30 14:20:02 by lyoung           ###   ########.fr       */
+/*   Updated: 2017/01/30 14:57:13 by lyoung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		key_length(char *file)
 
 	len = 0;
 	fd = open(file, O_RDONLY, S_IRUSR);
-	while (read(1, buff, 1) && buff[0] != '\n')
+	while (read(fd, buff, 1) && buff[0] != '\n')
 		len++;
 	return (len + 1);
 }
