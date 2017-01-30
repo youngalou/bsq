@@ -6,13 +6,31 @@
 /*   By: lyoung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 12:37:26 by lyoung            #+#    #+#             */
-/*   Updated: 2017/01/30 14:57:13 by lyoung           ###   ########.fr       */
+/*   Updated: 2017/01/30 15:18:07 by lyoung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+
+int		ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (0);
+}
+
+void	ft_putstr(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+}
 
 int		key_length(char *file)
 {
@@ -89,6 +107,18 @@ char	**set_matrix(int height, int width, char *file)
 	return (matrix);
 }
 
+void	print_matrix(char **matrix)
+{
+	int		i;
+
+	i = 0;
+	while (matrix)
+	{
+		ft_putstr(matrix[i]);
+		i++;
+	}
+}
+
 int		main(int argc, char **argv)
 {
 	int		height;
@@ -99,5 +129,6 @@ int		main(int argc, char **argv)
 	height = find_height(argv[1]);
 	width = find_width(argv[1], height);
 	matrix = set_matrix(width, height, argv[1]);
+	print_matrix(matrix);
 	return (0);
 }
