@@ -6,7 +6,7 @@
 /*   By: lyoung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 10:27:53 by lyoung            #+#    #+#             */
-/*   Updated: 2017/01/30 14:53:33 by lyoung           ###   ########.fr       */
+/*   Updated: 2017/01/30 17:18:05 by lyoung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,15 @@ int		main(int argc, char **argv)
 	 * 			- when moving down, binar search next row to check for obstaclese
 	 * 		c. if it doesn't work, move right and repeat. if you've reached the right-most position, move to next line.
 	 * 4. 
+	 *
+	 *
+	 *
+	 * LOGIC:
+	 * - Check 1x1 cells until you find the first "empty" character.
+	 * - Expand square to 2x2 and move square left until it finds a 2x2 slot with no obstacles.
+	 *   If current row has no possible slots, move down 1 row, and repeat.
+	 *   ~ (The cool thing about this algorithm is that you don't have to check previous slots because
+	 *   	anything that has been passed over for a smaller square cannot contain the bigger square.)
+	 * - Continue to expand square until you find a AxA square that doesn't fit anywhere.
+	 * - Print square in matrix.
 }
