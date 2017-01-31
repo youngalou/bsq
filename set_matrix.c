@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_matrix.c                                             :+:      :+:    :+:   */
+/*   set_array.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyoung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/29 12:37:26 by lyoung            #+#    #+#             */
-/*   Updated: 2017/01/30 15:18:07 by lyoung           ###   ########.fr       */
+/*   Created: 2017/01/30 15:31:07 by lyoung            #+#    #+#             */
+/*   Updated: 2017/01/30 16:05:43 by lyoung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdio.h>
 
 int		ft_putchar(char c)
 {
@@ -30,6 +31,19 @@ void	ft_putstr(char *str)
 		ft_putchar(str[i]);
 		i++;
 	}
+}
+
+int		find_size(char *file)
+{
+	int		fd;
+	int		size;
+	char	*buff;
+
+	size = 0;
+	fd = open(file, O_RDONLY, S_IRUSR);
+	while (read(fd, &buff, 1))
+		size++;
+	return (size);
 }
 
 int		key_length(char *file)
@@ -61,74 +75,45 @@ int		find_height(char *file)
 	return (height - 1);
 }
 
-int		find_width(char *file, int height)
+int		find_width(char *file, int size, int height)
 {
-	int		fd;
 	int		width;
-	char	*buff;
 
-	width = 0;
-	fd = open(file, O_RDONLY, S_IRUSR);
-	while (read(fd, &buff, 1))
-		width++;
-	width = (width - key_length(file) - height) / height;
+	width = (size - key_length(file) - height) / height;
 	return (width);
 }
 
-char	**set_matrix(int height, int width, char *file)
+char	*set_array(char *file, int size)
 {
+	int		i;
 	int		fd;
 	char	buff[1];
-	int		x;
-	int		y;
-	int		i;
-	char	**matrix;
+	char	*array;
 
-	x = 0;
-	y = 0;
 	i = 0;
-	matrix = (char**)malloc(height * sizeof(matrix));
-	while (i < height)
-	{
-		matrix[i] = (char*)malloc(width * sizeof(matrix));
-		i++;
-	}
+	array = (char*)malloc(size * sizeof(array));
 	fd = open(file, O_RDONLY, S_IRUSR);
 	while (read(fd, buff, 1))
 	{
-		if (buff[0] != '\n')
-		{
-			matrix[y][x] = buff[0];
-			x++;
-		}
-		else
-			y++;
-	}
-	return (matrix);
-}
-
-void	print_matrix(char **matrix)
-{
-	int		i;
-
-	i = 0;
-	while (matrix)
-	{
-		ft_putstr(matrix[i]);
+		array[i] = buff[0];
 		i++;
 	}
+	return (array);
 }
 
 int		main(int argc, char **argv)
 {
+	int		size;
 	int		height;
 	int		width;
-	char	**matrix;
+	char	*array;
 
 	(void)argc;
+	size = find_size(argv[1]);
+	array = set_array(argv[1], size);
 	height = find_height(argv[1]);
-	width = find_width(argv[1], height);
-	matrix = set_matrix(width, height, argv[1]);
-	print_matrix(matrix);
+	width = find_width(argv[1], size, height);
+	printf("height = %d\nwidth = %d\n", height, width);
+	ft_putstr(array);
 	return (0);
 }
