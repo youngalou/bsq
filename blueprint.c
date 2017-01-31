@@ -6,7 +6,7 @@
 /*   By: lyoung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 10:27:53 by lyoung            #+#    #+#             */
-/*   Updated: 2017/01/30 17:18:05 by lyoung           ###   ########.fr       */
+/*   Updated: 2017/01/30 17:35:03 by lyoung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ int		main(int argc, char **argv)
 	 *   If current row has no possible slots, move down 1 row, and repeat.
 	 *   ~ (The cool thing about this algorithm is that you don't have to check previous slots because
 	 *   	anything that has been passed over for a smaller square cannot contain the bigger square.)
+	 *   ~ When we check the next row for possible squaresm make SURE to move square back to the first column.
+	 * - The top-left cell in the square (first element for x and y) is going to be moved left until the end
+	 *   of the square hits the right wall, then move down and repeat until the bottom of the square hits
+	 *   the floor. Really, all we are moving is the top-left cell.
+	 * - When we see a bigger possible square, we do NOT move the cell. We first check for a bigger sqaure
+	 *   and if it isn't possible, we then move our top-left cell (and thus the entire square) through the
+	 *   maze with the aformentioned search algorithm.
 	 * - Continue to expand square until you find a AxA square that doesn't fit anywhere.
 	 * - Print square in matrix.
 }
