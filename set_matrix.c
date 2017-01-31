@@ -6,14 +6,13 @@
 /*   By: lyoung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 15:31:07 by lyoung            #+#    #+#             */
-/*   Updated: 2017/01/30 16:37:56 by lyoung           ###   ########.fr       */
+/*   Updated: 2017/01/30 16:59:02 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdio.h>
 
 int		ft_putchar(char c)
 {
@@ -162,13 +161,11 @@ int		main(int argc, char **argv)
 	width = find_width(argv[1], size, height);
 	matrix = set_matrix(height, width);
 	matrix = fill_matrix(matrix, array);
-	printf("height = %d\nwidth = %d\n", height, width);
 	while (i < height)
 	{
 		ft_putstr(matrix[i]);
 		ft_putchar('\n');
 		i++;
 	}
-	ft_putstr(array);
 	return (0);
 }
